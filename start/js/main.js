@@ -65,15 +65,54 @@
 // })(jQuery);
 
 // <-----------5 /Animating Multiple Objects-------------->
+// (function($){
+// 	var img = $('img'),
+// 	 h2 = $('h2'),
+// 	 h1 = $('h1'),
+// 	 intro =$('.intro'),
+// 	 listItem = $('ul li');
+// 	 tl = new TimelineLite();
+//  // TweenLite.from(h1, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.2});
+//  //  TweenLite.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.4});
+//  //   TweenLite.from(img, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.6});
+//  //    TweenLite.from(h2, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.8});
+// 	// TweenLite.from(listItem, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay:1});
+// 	tl.from(h1, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})
+// 	.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, '-=0.15')
+// 	.from(img, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, '-=0.15')
+// 	.from(h2, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, '-=0.15')
+// 	.from(listItem, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, '-=0.15');
+// 	//timeline a delay use korte hoyna, ektar por arekta amnite chole ashbe.
+// 	//ekhane '-=0.15' purboborti twin ka over lap kore -0.15s dhara.
+// })(jQuery);
+
+
+
+// <-------#6  /Adding Tweens To A Timeline-------?
 (function($){
 	var img = $('img'),
 	 h2 = $('h2'),
 	 h1 = $('h1'),
 	 intro =$('.intro'),
 	 listItem = $('ul li');
- TweenLite.from(h1, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.2});
-  TweenLite.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.4});
-   TweenLite.from(img, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.6});
-    TweenLite.from(h2, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.8});
-	TweenLite.from(listItem, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay:1});
+	 tl = new TimelineLite();
+ // // TweenLite.from(h1, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.2});
+ // //  TweenLite.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.4});
+ // //   TweenLite.from(img, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.6});
+ // //    TweenLite.from(h2, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.8});
+	// // TweenLite.from(listItem, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay:1});
+	// tl.from(h1, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})
+	// .from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, '+=1')
+	// .from(img, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, 3)//3 second por shuru hobe.
+	// .from(h2, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, 2)
+	// .from(listItem, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, 2.5);
+	// //timeline a delay use korte hoyna, ektar por arekta amnite chole ashbe.
+	// //ekhane '-=0.15' purboborti twin ka over lap kore -0.15s dhara.
+	// //+ dile oto second por ashbe. na dile oto shomoy por jeta age ashar age ashbe. 
+	tl.from(h1, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})
+	.add('intro')
+	.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, 'intro')//shob intro shate ashbe
+	.from(img, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})//3 second por shuru hobe.
+	.from(h2, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, 'intro+=3')//intro ashar 3 second por ashbe ei h2
+	.from(listItem, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, 'intro');
 })(jQuery);
