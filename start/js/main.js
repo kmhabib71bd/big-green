@@ -118,14 +118,17 @@
 // })(jQuery);
 
 
-// <-------#7  Controlling Timeline Playback - #7-------?
+// <-------#7  Controlling Timeline Playback - #7-------> and
+// <-------#8  Staggering Animations - #8 - #7------->
 (function($){
 	var img = $('img'),
 	 h2 = $('h2'),
 	 h1 = $('h1'),
 	 intro =$('.intro'),
 	 listItem = $('ul li');
+	 buttons = $('button');
 	 tl = new TimelineLite();
+
  // // TweenLite.from(h1, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.2});
  // //  TweenLite.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.4});
  // //   TweenLite.from(img, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.6});
@@ -139,13 +142,23 @@
 	// //timeline a delay use korte hoyna, ektar por arekta amnite chole ashbe.
 	// //ekhane '-=0.15' purboborti twin ka over lap kore -0.15s dhara.
 	// //+ dile oto second por ashbe. na dile oto shomoy por jeta age ashar age ashbe. 
-	tl.from(h1, 1, {y:-15, autoAlpha: 0, ease:Power1.easeOut})
+	tl.from(h1,0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})
 	.add('intro')
-	.from(intro, 1, {y:-15, autoAlpha: 0, ease:Power1.easeOut})//shob intro shate ashbe
-	.from(img, 1, {y:-15, autoAlpha: 0, ease:Power1.easeOut})//3 second por shuru hobe.
-	.from(h2, 1, {y:-15, autoAlpha: 0, ease:Power1.easeOut})//intro ashar 3 second por ashbe ei h2
-	.from(listItem, 1, {y:-15, autoAlpha: 0, ease:Power1.easeOut});
-	tl.pause();
+	.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})//shob intro shate ashbe
+	.from(img, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})//3 second por shuru hobe.
+	.from(h2, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})//intro ashar 3 second por ashbe ei h2
+	.from(listItem, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})
+	//#8
+	// .staggerFromTo(buttons, 0.2, 
+	// {autoAlpha: 0, x: 10}, 
+	// {x: -20, autoAlpha: 1, ease:Power1.easeOut}, 
+	// 0.1);//0.1 delay between individual tweens
+	//#8
+	// tl.pause();
+	.staggerFrom(buttons, 1, {cycle:{ 
+		x:[50, -50],
+		scale: [2, 0.5]
+	},autoAlpha: 0, ease:Power1.easeOut}, 0.5);
 
 	$('#btnPlay').on('click',function(){
 		tl.play();
@@ -175,3 +188,5 @@
 		tl.restart();
 	});
 })(jQuery);
+
+// <-------#8  Controlling Timeline Playback - #7-------?
