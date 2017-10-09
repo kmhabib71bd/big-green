@@ -17,13 +17,23 @@
 //   lastItem = document.getElementsByClassName("list")[0].lastElementChild;
 // TweenLite.to(thirdItem, 1, {opacity: 0, y:50});
 // })(jQuery);
-// <---------css animation portion------------->
+// <---------2/css animation portion------------->
+// (function($){
+// 	var img = $('img'),
+// 	 h2 = $('h2');
+// // TweenLite.fromTo(img, 1, { x:-200}, {x:200} );
+// // TweenLite.set(img, { x:-200} ); // set method nirdishto place a object ka set kore.
+// TweenLite.from(img, 1, { x:-200} );
+// TweenLite.from(h2, 1, { autoAlpha: 0, delay: 1} );
+
+// })(jQuery);
+// <-----------3/easing-------------->
 (function($){
 	var img = $('img'),
 	 h2 = $('h2');
 // TweenLite.fromTo(img, 1, { x:-200}, {x:200} );
 // TweenLite.set(img, { x:-200} ); // set method nirdishto place a object ka set kore.
-TweenLite.from(img, 1, { x:-200} );
+TweenLite.from(img, 1, { x:-200, ease:Power2.easeOut} );
 TweenLite.from(h2, 1, { autoAlpha: 0, delay: 1} );
 
 })(jQuery);
