@@ -39,27 +39,41 @@
 // })(jQuery);
 
 // <-----------4/Adding Callback functions-------------->
+// (function($){
+// 	var img = $('img'),
+// 	 h2 = $('h2'),
+// 	 i =0;
+// // TweenLite.fromTo(img, 1, { x:-200}, {x:200} );
+// // TweenLite.set(img, { x:-200} ); // set method nirdishto place a object ka set kore.
+// TweenLite.from(img, 1, { 
+// 				x:-200, 
+// 				ease:SlowMo.ease, 
+// 				onStart: onStart,
+// 				onUpdate: onUpdate,
+// 				onComplete: onComplete} ); //ekhane onStart holo function.
+// // TweenLite.from(h2, 1, { autoAlpha: 0, delay: 1} );
+// function onStart(){
+//  console.log('animation started');
+// }
+// function onUpdate(){
+//  //console.log('animation is in progress');
+//  h2.text(i++);//ekhane h2 variable text() function add kore shekhane i++ korano hoecha.
+// }
+// function onComplete(){
+//  console.log('animation completed');
+// }
+// })(jQuery);
+
+// <-----------5 /Animating Multiple Objects-------------->
 (function($){
 	var img = $('img'),
 	 h2 = $('h2'),
-	 i =0;
-// TweenLite.fromTo(img, 1, { x:-200}, {x:200} );
-// TweenLite.set(img, { x:-200} ); // set method nirdishto place a object ka set kore.
-TweenLite.from(img, 1, { 
-				x:-200, 
-				ease:SlowMo.ease, 
-				onStart: onStart,
-				onUpdate: onUpdate,
-				onComplete: onComplete} ); //ekhane onStart holo function.
-// TweenLite.from(h2, 1, { autoAlpha: 0, delay: 1} );
-function onStart(){
- console.log('animation started');
-}
-function onUpdate(){
- //console.log('animation is in progress');
- h2.text(i++);//ekhane h2 variable text() function add kore shekhane i++ korano hoecha.
-}
-function onComplete(){
- console.log('animation completed');
-}
+	 h1 = $('h1'),
+	 intro =$('.intro'),
+	 listItem = $('ul li');
+ TweenLite.from(h1, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.2});
+  TweenLite.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.4});
+   TweenLite.from(img, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.6});
+    TweenLite.from(h2, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.8});
+	TweenLite.from(listItem, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay:1});
 })(jQuery);
