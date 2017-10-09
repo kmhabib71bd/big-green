@@ -125,9 +125,12 @@
 	 h2 = $('h2'),
 	 h1 = $('h1'),
 	 intro =$('.intro'),
-	 listItem = $('ul li');
-	 buttons = $('button');
-	 tl = new TimelineLite();
+	 listItem = $('ul li'),
+	 buttons = $('button'),
+	 tl = new TimelineLite({paused: true}),
+	 dot = $('.dot'),
+	 loader = $('#loader'),
+	 tlLoader = new TimelineMax({repeat: 2, onComplete:loadcontent});
 
  // // TweenLite.from(h1, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.2});
  // //  TweenLite.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.4});
@@ -187,6 +190,18 @@
 	$('#btnRestart').on('click',function(){
 		tl.restart();
 	});
+	//Loader timeline
+tlLoader
+	.staggerFromTo(dot, 0.3, 
+		{y: 0, autoAlpha: 0}, 
+		{y:20, autoAlpha:1, ease:Back.easeInOut},
+		0.2)
+	.fromto(loader, 0.3, 
+		{autoAlpha: 1, scale: 1.3}, 
+		{autoAlpha: 1, scale: 1, ease:Power0.easeNone}, 0.7);
+	function loadcontent(){
+		console.log('bring the content');
+	}
 })(jQuery);
 
 // <-------#8  Controlling Timeline Playback - #7-------?
