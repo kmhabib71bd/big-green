@@ -131,6 +131,7 @@
 	 dot = $('.dot'),
 	 loader = $('#loader'),
 	 tlLoader = new TimelineMax({repeat: 2, onComplete:loadcontent});
+	 //eta shesh hole loadcontent() shuru hobe, loadcontent() shesh hole tl.play() shuru hoe puro animation run korbe. etai onComplete() call back function a bola hoecha.
 
  // // TweenLite.from(h1, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.2});
  // //  TweenLite.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut, delay: 0.4});
@@ -144,8 +145,12 @@
 	// .from(listItem, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut}, 2.5);
 	// //timeline a delay use korte hoyna, ektar por arekta amnite chole ashbe.
 	// //ekhane '-=0.15' purboborti twin ka over lap kore -0.15s dhara.
+	
 	// //+ dile oto second por ashbe. na dile oto shomoy por jeta age ashar age ashbe. 
-	tl.from(h1,0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})
+
+	tl
+	.set(header, {autoAlpha:1})
+	.from(h1,0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})
 	.add('intro')
 	.from(intro, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})//shob intro shate ashbe
 	.from(img, 0.3, {y:-15, autoAlpha: 0, ease:Power1.easeOut})//3 second por shuru hobe.
@@ -191,16 +196,27 @@
 		tl.restart();
 	});
 	//Loader timeline
-tlLoader
-	.staggerFromTo(dot, 0.3, 
+	tlLoader //eta shesh hole loadcontent() shuru hobe, loadcontent() shesh hole tl.play() shuru hoe puro animation run korbe. etai onComplete() call back function a bola hoecha.
+	.staggerFromTo(dot, 0.5, 
 		{y: 0, autoAlpha: 0}, 
 		{y:20, autoAlpha:1, ease:Back.easeInOut},
-		0.2)
+		0.05)
 	.fromto(loader, 0.3, 
 		{autoAlpha: 1, scale: 1.3}, 
-		{autoAlpha: 1, scale: 1, ease:Power0.easeNone}, 0.7);
+		{autoAlpha: 1, scale: 1, ease:Power0.easeNone}, 0.9);
 	function loadcontent(){
-		console.log('bring the content');
+		var tlLoaderOut = new TimelineLite({onComplete: contentIn});
+		tlLoaderOut
+			.set(dot, {backgroundColor: '#2b4d66'})
+			.to(loader, 0.3, {autoAlpha: 1, scale: 1.3, ease:Power0.easeNone})
+			.staggerFromTo(dot, 0.5, 
+		{y: 0, autoAlpha: 0}, 
+		{y:20, autoAlpha:1, ease:Back.easeInOut},
+		0.05, 0)
+			.to(loader, 0.5, {y:-150, autoAlpha: 0, ease:Back.easeIn }, '+=0.3');
+	}
+	function contentIn(){
+		tl.play();
 	}
 })(jQuery);
 
